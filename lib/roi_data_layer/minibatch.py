@@ -121,7 +121,7 @@ def get_weak_minibatch(roidb, num_classes):
     # all_overlaps = []
     total_boxscores = np.zeros((0), dtype=np.float32)
     for im_i in xrange(num_images):
-        labels, boxscores, overlaps, im_rois, bbox_targets, bbox_inside_weights \
+            labels, boxscores, overlaps, im_rois, bbox_targets, bbox_inside_weights \
             = _sample_weak_rois(roidb[im_i], fg_rois_per_image, rois_per_image,
                            num_classes)
 

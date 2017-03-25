@@ -355,7 +355,7 @@ class MyLossLayer(caffe.Layer):
        pass
    def forward(self, bottom, top):
        # bottom[0] = predicts, bottom[1] = binary labels 
-       top0.data[...] = np.sum( - np.log(np.multiply(bottom[1].data[:], (bottom[0].data[:] - 0.5)) + 0.5))
+       top[0].data[...] = np.sum(- np.log(np.multiply(bottom[1].data[:], (bottom[0].data[:] - 0.5)) + 0.5))
    def backward(self, bottom, top): 
        bottom[0].diff[:] = - bottom[1].data[:] / (np.multiply(bottom[1].data[:], (bottom[0].data[:] - 0.5)) + 0.5) 
 

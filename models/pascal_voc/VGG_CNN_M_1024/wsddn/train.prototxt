@@ -435,8 +435,12 @@ layer {
 
 layer {
   name: "final_loss"
-  type: "MyLossLayer"
+  type: "Python"
   bottom: "weakpred"
   bottom: "binarylabel"
   top: "final_loss"
+    python_param {
+    module: 'roi_data_layer.layer'
+    layer: 'MyLossLayer'
+  }
 }
