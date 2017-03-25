@@ -1,0 +1,14 @@
+train_net: "models/pascal_voc/VGG_CNN_M_1024/wsddn/train.prototxt"
+#lr, momentum, policy, gamma, display, average_loss, decay
+#
+base_lr: 0.00001
+lr_policy: "step"
+gamma: 0.1
+stepsize: 100000
+weight_decay: 0.0005
+snapshot: 0
+snapshot_prefix: "hai_snapshot"
+iter_size: 1
+solver_type: ADAGRAD
+display: 1
+
