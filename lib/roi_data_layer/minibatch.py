@@ -112,55 +112,55 @@ def get_weak_minibatch(roidb, num_classes):
     ####### Hint: take a look at get_minibatch(), maybe use sample_weak_rois
     ####### Hint: blobs is a dictionary with the following keys:
         ###             'data', 'rois', 'labels' and  'boxscores'
-    if 1 == 1: 
-        # Now, build the region of interest and label blobs
-        rois_blob = np.zeros((0, 5), dtype=np.float32)
-        labels_blob = np.zeros((0), dtype=np.float32)
-        bbox_targets_blob = np.zeros((0, 4 * num_classes), dtype=np.float32)
-        bbox_inside_blob = np.zeros(bbox_targets_blob.shape, dtype=np.float32)
-        # all_overlaps = []
-        total_boxscores = np.zeros((0), dtype=np.float32) 
-        for im_i in xrange(num_images):
-            labels, boxscores, overlaps, im_rois, bbox_targets, bbox_inside_weights \
-                = _sample_weak_rois(roidb[im_i], fg_rois_per_image, rois_per_image,
-                               num_classes)
-            
-            # Add to RoIs blob
-            rois = _project_im_rois(im_rois, im_scales[im_i])
-            batch_ind = im_i * np.ones((rois.shape[0], 1))
-            rois_blob_this_image = np.hstack((batch_ind, rois))
-            rois_blob = np.vstack((rois_blob, rois_blob_this_image))
 
-            # Add to labels, bbox targets, and bbox loss blobs
-            sys.stdout.flush()
-            pdb.set_trace()
-            print labels.shape
-            print boxscores.shape
-            # embed()
+    # Now, build the region of interest and label blobs
+    rois_blob = np.zeros((0, 5), dtype=np.float32)
+    labels_blob = np.zeros((0), dtype=np.float32)
+    bbox_targets_blob = np.zeros((0, 4 * num_classes), dtype=np.float32)
+    bbox_inside_blob = np.zeros(bbox_targets_blob.shape, dtype=np.float32)
+    # all_overlaps = []
+    total_boxscores = np.zeros((0), dtype=np.float32)
+    for im_i in xrange(num_images):
+        labels, boxscores, overlaps, im_rois, bbox_targets, bbox_inside_weights \
+            = _sample_weak_rois(roidb[im_i], fg_rois_per_image, rois_per_image,
+                           num_classes)
 
-            labelb/fast_rcnn/test.pys_blob = np.hstack((labels_blob, labels))
-            bbox_targets_blob = np.vstack((bbox_targets_blob, bbox_targets))
-            bbox_inside_blob = np.vstack((bbox_inside_blob, bbox_inside_weights))
-            # all_overlaps = np.hstack((all_overlaps, overlaps))
-            
-            # Add to total_boxscores 
-            total_boxscores = np.hstack((total_boxscores, boxscores))
+        # Add to RoIs blob
+        rois = _project_im_rois(im_rois, im_scales[im_i])
+        batch_ind = im_i * np.ones((rois.shape[0], 1))
+        rois_blob_this_image = np.hstack((batch_ind, rois))
+        rois_blob = np.vstack((rois_blob, rois_blob_this_image))
+
+        # Add to labels, bbox targets, and bbox loss blobs
+        sys.stdout.flush()
+        pdb.set_trace()
+        print labels.shape
+        print boxscores.shape
+        # embed()
+
+        labels_blob = np.hstack((labels_blob, labels))
+        bbox_targets_blob = np.vstack((bbox_targets_blob, bbox_targets))
+        bbox_inside_blob = np.vstack((bbox_inside_blob, bbox_inside_weights))
+        # all_overlaps = np.hstack((all_overlaps, overlaps))
+
+        # Add to total_boxscores
+        total_boxscores = np.hstack((total_boxscores, boxscores))
                         
             
 
-        # For debug visualizations
-        # _vis_minibatch(im_blob, rois_blob, labels_blob, all_overlaps)
+    # For debug visualizations
+    # _vis_minibatch(im_blob, rois_blob, labels_blob, all_overlaps)
 
-        blobs['rois'] = rois_blob
-        blobs['labels'] = labels_blob
+    blobs['rois'] = rois_blob
+    blobs['labels'] = labels_blob
 
-        if cfg.TRAIN.BBOX_REG:
-            blobs['bbox_targets'] = bbox_targets_blob
-            blobs['bbox_inside_weights'] = bbox_inside_blob
-            blobs['bbox_outside_weights'] = \
-                np.array(bbox_inside_blob > 0).astype(np.float32)
+    if cfg.TRAIN.BBOX_REG:
+        blobs['bbox_targets'] = bbox_targets_blob
+        blobs['bbox_inside_weights'] = bbox_inside_blob
+        blobs['bbox_outside_weights'] = \
+            np.array(bbox_inside_blob > 0).astype(np.float32)
 
-        blobs['boxscores'] = total_boxscores 
+    blobs['boxscores'] = total_boxscores
 
     return blobs
 
