@@ -109,7 +109,7 @@ def get_weak_minibatch(roidb, num_classes):
 
     # Now, build the region of interest and label blobs
     rois_blob = np.zeros((0, 5), dtype=np.float32)
-    labels_blob = np.zeros((0), dtype=np.float32)
+    labels_blob = np.zeros((1, 20), dtype=np.float32)
     bbox_targets_blob = np.zeros((0, 4 * num_classes), dtype=np.float32)
     bbox_inside_blob = np.zeros(bbox_targets_blob.shape, dtype=np.float32)
     # all_overlaps = []
@@ -119,14 +119,14 @@ def get_weak_minibatch(roidb, num_classes):
             = _sample_weak_rois(roidb[im_i], fg_rois_per_image, rois_per_image,
                                 num_classes)
 
-            # Add to RoIs blob
+        # Add to RoIs blob
         rois = _project_im_rois(im_rois, im_scales[im_i])
         batch_ind = im_i * np.ones((rois.shape[0], 1))
         rois_blob_this_image = np.hstack((batch_ind, rois))
         rois_blob = np.vstack((rois_blob, rois_blob_this_image))
 
         # Add to labels, bbox targets, and bbox loss blobs
-        # pdb.set_trace()
+        pdb.set_trace()
         # print labels.shape
         # print boxscores.shape
 
@@ -136,7 +136,7 @@ def get_weak_minibatch(roidb, num_classes):
         reduced_labels[gtlabels] = 1
         reduced_labels.reshape(1,20)
 
-        labels_blob = np.hstack((labels_blob, reduced_labels))
+        labels_blob = np.vstack((labels_blob, reduced_labels))
         bbox_targets_blob = np.vstack((bbox_targets_blob, bbox_targets))
         bbox_inside_blob = np.vstack((bbox_inside_blob, bbox_inside_weights))
         # all_overlaps = np.hstack((all_overlaps, overlaps))
