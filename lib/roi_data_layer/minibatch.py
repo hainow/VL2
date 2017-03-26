@@ -134,8 +134,8 @@ def get_weak_minibatch(roidb, num_classes):
         gtlabels = np.unique(labels[labels!=0])
         gtlabels -= 1 # background is 0, now we dont need 0, index 1 -> 0, 2 -> 1, 3 -> 2, ...
         reduced_labels[gtlabels] = 1
-        reduced_labels.reshape(1,20)
-        labels_blob = np.vstack((labels_blob, reduced_labels))
+        # reduced_labels = reduced_labels.reshape(1,20)
+        labels_blob = np.vstack((labels_blob, reduced_labels.reshape(1,20)))
 
         bbox_targets_blob = np.vstack((bbox_targets_blob, bbox_targets))
         bbox_inside_blob = np.vstack((bbox_inside_blob, bbox_inside_weights))
