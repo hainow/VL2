@@ -2,7 +2,7 @@
 # Use Shift+Enter to update the visualization.
 
 name: "WSDDN"
-force_backward: true
+#force_backward: true
 layer {
   name: 'data'
   type: 'Python'

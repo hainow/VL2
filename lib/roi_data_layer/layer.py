@@ -353,13 +353,15 @@ class BlobFetcher(Process):
 class MyLossLayer(caffe.Layer): 
    def setup(self, bottom, top): 
        pass
+
    def forward(self, bottom, top):
        # bottom[0] = predicts, bottom[1] = binary labels 
        top[0].data[...] = np.sum(- np.log(np.multiply(bottom[1].data[:], (bottom[0].data[:] - 0.5)) + 0.5))
-   def backward(self, bottom, top): 
+
+   def backward(self, bottom, top):
        bottom[0].diff[:] = - bottom[1].data[:] / (np.multiply(bottom[1].data[:], (bottom[0].data[:] - 0.5)) + 0.5) 
 
-   def reshape(self, bottom, top): 
+   def reshape(self, bottom, top):
        top[0].reshape(1) # why? 
 #####################################################
 
@@ -375,7 +377,7 @@ class SecretAssignmentLayer(caffe.Layer):
         top[0].data[0,:] = np.swapaxes(bottom[0].data[:],0,1)
         
     def backward(self, top, propagate_down, bottom):
-	bottom[0].diff[:] = np.swapaxes(top[0].diff[0,:,:],0,1)
+	    bottom[0].diff[:] = np.swapaxes(top[0].diff[0,:,:],0,1)
 
     def reshape(self, bottom, top):
         top[0].reshape(1,bottom[0].data.shape[1], bottom[0].data.shape[0])
