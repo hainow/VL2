@@ -199,7 +199,7 @@ layer {
     name: "scale_1"
     type: "Scale"
     scale_param {
-        bias_term: true
+        # bias_term: true
         axis: 0 # default = 1  
     }
 }
