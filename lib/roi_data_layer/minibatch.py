@@ -159,6 +159,7 @@ def get_weak_minibatch(roidb, num_classes):
 
     blobs['boxscores'] = total_boxscores
 
+    pdb.set_trace()
     return blobs
 
 
