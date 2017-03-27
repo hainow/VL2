@@ -446,4 +446,5 @@ layer {
     module: 'roi_data_layer.layer'
     layer: 'MyLossLayer'
   }
+  loss_weight: 1
 }
