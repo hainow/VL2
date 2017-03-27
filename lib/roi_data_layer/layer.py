@@ -382,8 +382,8 @@ class SecretAssignmentLayer(caffe.Layer):
     def forward(self, bottom, top):
         top[0].data[0,:] = np.swapaxes(bottom[0].data[:],0,1)
         
-    # def backward(self, top, propagate_down, bottom):
-    def backward(self, top, bottom):
+    def backward(self, top, propagate_down, bottom):
+    # def backward(self, top, bottom):
 	    bottom[0].diff[:] = np.swapaxes(top[0].diff[0,:,:],0,1)
 
     def reshape(self, bottom, top):
