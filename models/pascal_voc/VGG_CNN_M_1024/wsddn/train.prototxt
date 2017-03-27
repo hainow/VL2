@@ -196,11 +196,11 @@ layer {
 
 ######### SPP Layer ##############
 layer {
+    name: "scale_1"
+    type: "Scale"
     bottom: "pool5"
     bottom: "boxscores"
     top: "scale_1"
-    name: "scale_1"
-    type: "Scale"
     scale_param {
         # bias_term: true
         axis: 0 # default = 1  
