@@ -291,6 +291,7 @@ def _get_bbox_regression_labels(bbox_target_data, num_classes):
         start = 4 * cls
         end = start + 4
         print ind, start, end
+        ind, start, end = int(ind), int(start), int(end)
         bbox_targets[ind, start:end] = bbox_target_data[ind, 1:]
         bbox_inside_weights[ind, start:end] = cfg.TRAIN.BBOX_INSIDE_WEIGHTS
     return bbox_targets, bbox_inside_weights
