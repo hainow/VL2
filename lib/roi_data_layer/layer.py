@@ -18,6 +18,8 @@ import yaml
 from multiprocessing import Process, Queue
 from utils.cython_bbox import bbox_overlaps
 
+import pdb
+
 class RoIDataLayer(caffe.Layer):
     """Fast R-CNN data layer used for training."""
 
@@ -362,6 +364,7 @@ class MyLossLayer(caffe.Layer):
        print("Loss = {}".format(top[0].data[:]))
 
    def backward(self, bottom, propagate_down, top):
+       print bottom.shape, bottom
        bottom[0].diff[:] = - bottom[1].data[:] / (np.multiply(bottom[1].data[:], (bottom[0].data[:] - 0.5)) + 0.5)
        print("gradient  = {}".format(bottom[0].diff[:]))
 
@@ -383,7 +386,6 @@ class SecretAssignmentLayer(caffe.Layer):
         top[0].data[0,:] = np.swapaxes(bottom[0].data[:],0,1)
         
     def backward(self, top, propagate_down, bottom):
-    # def backward(self, top, bottom):
 	    bottom[0].diff[:] = np.swapaxes(top[0].diff[0,:,:],0,1)
 
     def reshape(self, bottom, top):
