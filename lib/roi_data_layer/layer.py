@@ -352,18 +352,23 @@ class BlobFetcher(Process):
 
 class MyLossLayer(caffe.Layer): 
    def setup(self, bottom, top): 
-       pass
+       self.top = top
+       self.bottom = bottom
 
    def forward(self, bottom, top):
        # bottom[0] = predicts, bottom[1] = binary labels 
        # top[0].data[...] = np.sum(- np.log(np.multiply(bottom[1].data[:], (bottom[0].data[:] - 0.5)) + 0.5))
        top[0].data[:] = np.sum(- np.log(np.multiply(bottom[1].data[:], (bottom[0].data[:] - 0.5)) + 0.5))
+       print("Loss = {}".format(top[0].data[:]))
 
    def backward(self, bottom, top):
-       bottom[0].diff[:] = - bottom[1].data[:] / (np.multiply(bottom[1].data[:], (bottom[0].data[:] - 0.5)) + 0.5) 
+       bottom[0].diff[:] = - bottom[1].data[:] / (np.multiply(bottom[1].data[:], (bottom[0].data[:] - 0.5)) + 0.5)
+       print("gradient  = {}".format(bottom[0].diff[:]))
 
    def reshape(self, bottom, top):
-       top[0].reshape(1) # why? 
+       print("Shape of output is {}".format(top[0].shape))
+       top[0].reshape(1) # why?
+
 #####################################################
 
 
