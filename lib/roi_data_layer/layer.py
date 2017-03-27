@@ -361,7 +361,7 @@ class MyLossLayer(caffe.Layer):
        top[0].data[:] = np.sum(- np.log(np.multiply(bottom[1].data[:], (bottom[0].data[:] - 0.5)) + 0.5))
        print("Loss = {}".format(top[0].data[:]))
 
-   def backward(self, bottom, top):
+   def backward(self, bottom, propagate_down, top):
        bottom[0].diff[:] = - bottom[1].data[:] / (np.multiply(bottom[1].data[:], (bottom[0].data[:] - 0.5)) + 0.5)
        print("gradient  = {}".format(bottom[0].diff[:]))
 
