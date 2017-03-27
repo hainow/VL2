@@ -12,4 +12,4 @@ snapshot_prefix: "hai_snapshot"
 solver_type: ADAM
 display: 20
 average_loss: 100
-debug_info: true
+# debug_info: true
