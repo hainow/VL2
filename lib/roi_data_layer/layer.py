@@ -366,7 +366,7 @@ class MyLossLayer(caffe.Layer):
    def backward(self, top, propagate_down, bottom):
        # pdb.set_trace()
        bottom[0].diff[:] = - bottom[1].data[:] / (np.multiply(bottom[1].data[:], (bottom[0].data[:] - 0.5)) + 0.5)
-       print("gradient  = {}".format(bottom[0].diff[:]))
+       # print("gradient  = {}".format(bottom[0].diff[:]))
 
    def reshape(self, bottom, top):
        print("Shape of output is {}".format(top[0].shape))
