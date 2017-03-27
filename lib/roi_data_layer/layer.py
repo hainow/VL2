@@ -361,7 +361,7 @@ class MyLossLayer(caffe.Layer):
        # bottom[0] = predicts, bottom[1] = binary labels 
        # top[0].data[...] = np.sum(- np.log(np.multiply(bottom[1].data[:], (bottom[0].data[:] - 0.5)) + 0.5))
        top[0].data[:] = np.sum(- np.log(np.multiply(bottom[1].data[:], (bottom[0].data[:] - 0.5)) + 0.5))
-       print("Loss = {}".format(top[0].data[:]))
+       # print("Loss = {}".format(top[0].data[:]))
 
    def backward(self, top, propagate_down, bottom):
        # pdb.set_trace()
@@ -369,7 +369,8 @@ class MyLossLayer(caffe.Layer):
        # print("gradient  = {}".format(bottom[0].diff[:]))
 
    def reshape(self, bottom, top):
-       print("Shape of output is {}".format(top[0].shape))
+       # print("Shape of output is {}".format(top[0].shape))
+       pdb.set_trace()
        top[0].reshape(1) # why?
 
 #####################################################
