@@ -130,7 +130,8 @@ def get_weak_minibatch(roidb, num_classes):
         # print labels.shape
         # print boxscores.shape
 
-        reduced_labels = np.zeros((20, 1))
+        # reduced_labels = np.zeros((20, 1))
+        reduced_labels = - np.ones((20, 1))
         gtlabels = np.unique(labels[labels!=0])
         gtlabels -= 1 # background is 0, now we dont need 0, index 1 -> 0, 2 -> 1, 3 -> 2, ...
         reduced_labels[gtlabels] = 1
