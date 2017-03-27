@@ -102,7 +102,7 @@ class SolverWrapper(object):
             self.solver.step(1)
 
             # debugging
-            pdb.set_trace()
+            # pdb.set_trace()
 
             timer.toc()
             if self.solver.iter % (10 * self.solver_param.display) == 0:
