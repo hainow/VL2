@@ -9,6 +9,6 @@ weight_decay: 0.0005
 snapshot: 0
 snapshot_prefix: "hai_snapshot"
 iter_size: 1
-solver_type: ADAGRAD
+solver_type: ADAM
 display: 1
 
