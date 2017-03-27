@@ -30,7 +30,7 @@ def parse_args():
                         default='models/pascal_voc/VGG_CNN_M_1024/wsddn/test.prototxt', type=str)
     parser.add_argument('--net', dest='caffemodel',
                         help='model to test',
-                        default=None, type=str)
+                        default=None, type=str) # TODO: point to the path of saved network
     parser.add_argument('--cfg', dest='cfg_file',
                         help='optional config file', default=None, type=str)
     parser.add_argument('--wait', dest='wait',
@@ -51,7 +51,7 @@ def parse_args():
                         default=100, type=int)
     parser.add_argument('--thresh', dest='thresh',
                         help='threshold for dets',
-                        default=0.00001, type=float)
+                        default=0.00001, type=float) # On line 54 of tools/test_net.py, replace 'default=0.00001' with something smaller like 'default=0.00000001'.
 
     if len(sys.argv) == 1:
         parser.print_help()

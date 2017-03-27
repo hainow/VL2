@@ -372,7 +372,7 @@ class MyLossLayer(caffe.Layer):
    def reshape(self, bottom, top):
        # print("Shape of output is {}".format(top[0].shape))
        # pdb.set_trace()
-       top[0].reshape(1) # why?
+       top[0].reshape(1) # why?``
 
 #####################################################
 
