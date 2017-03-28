@@ -28,8 +28,7 @@ def parse_args():
     parser.add_argument('--def', dest='prototxt',
                         help='prototxt file defining the network',
                         default='models/pascal_voc/VGG_CNN_M_1024/wsddn/test.prototxt', type=str)
-    parser.add_argument('--net', dest='caffemodel',
-                        help='model to test',
+    parser.add_argument('--net', dest='caffemodel', help='model to test',
                         default='/usr0/home/htpham/Downloads/824/a2/assignment2/output/default/voc_2007_trainval/hai_snapshot_iter_25000.caffemodel',
                         type=str) # TODO: point to the path of saved network
     parser.add_argument('--cfg', dest='cfg_file',
