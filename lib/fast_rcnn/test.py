@@ -144,7 +144,7 @@ def im_detect(net, im, boxes=None, boxscores=None):
                                         return_inverse=True)
         blobs['rois'] = blobs['rois'][index, :]
         boxes = boxes[index, :]
-        boxscores = boxscores[index]  # added
+        blob['boxscores'] = boxscores[index]  # added
 
     if cfg.TEST.HAS_RPN:
         im_blob = blobs['data']
