@@ -18,21 +18,23 @@ def get_loss_data(file='/tmp/log.txt'):
     return np.asarray(losses)
 
 def process_losses(losses=None, window=20):
-    processed = np.split(losses[:int(len(losses)/window) * window], window)
+    """ Assuming display frequency is 5 iters, so we average every 20*5 = 100 iters"""
+    num_splits = int(len(losses)/window)
+    processed = np.split(losses[:num_splits * window], num_splits)
     p_losses = [np.average(x) for x in processed]
-
+    print('Length of processed losses is now {}'.format(len(p_losses)))
     return p_losses
 
 def plot_losses(p_losses=None):
     x = [(i+1)*100 for i in range(len(p_losses))]
     plt.plot(x, p_losses, color='r', marker='*', label='losses')
-    plt.grid(True)
-    plt.title("Loss value over iterations (average of a window of 100 iters)")
-    plt.xlabel("epoch")
+    plt.title("Loss value over iterations (averaged on a window of 100 iters)")
+    plt.xlabel("iteration")
     plt.ylabel("loss value")
-    plt.grid()
-    plt.xticks(x)
-    plt.yticks()
+    plt.grid(True)
+    xt = [i for i in x if i % 500 == 0]
+    plt.xticks(xt, rotation=0, fontsize='10')
+    # plt.yticks()
     plt.legend()
     # plt.savefig("loss.png")
     plt.show()
@@ -42,7 +44,6 @@ def main():
     print losses
     p_losses = process_losses(losses, 20)
     print p_losses
-    # np.average(process_losses())
     plot_losses(p_losses)
 
 if __name__ == "__main__":
