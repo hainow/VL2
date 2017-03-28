@@ -33,7 +33,7 @@ def parse_args():
                         default='models/pascal_voc/VGG_CNN_M_1024/wsddn/solver.prototxt', type=str)
     parser.add_argument('--iters', dest='max_iters',
                         help='number of iterations to train',
-                        default=1000, type=int)
+                        default=25000, type=int)
     parser.add_argument('--weights', dest='pretrained_model',
                         help='initialize with pretrained model weights',
                         default='../assignment2_data/VGG_CNN_M_1024.v2.caffemodel', type=str)
