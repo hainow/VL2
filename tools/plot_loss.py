@@ -33,7 +33,7 @@ def plot_losses(p_losses=None):
     plt.ylabel("loss value")
     plt.grid(True)
     xt = [i for i in x if i % 500 == 0]
-    plt.xticks(xt, rotation=0, fontsize='10')
+    plt.xticks(xt, rotation=70, fontsize='10')
     # plt.yticks()
     plt.legend()
     # plt.savefig("loss.png")

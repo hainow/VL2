@@ -30,7 +30,8 @@ def parse_args():
                         default='models/pascal_voc/VGG_CNN_M_1024/wsddn/test.prototxt', type=str)
     parser.add_argument('--net', dest='caffemodel',
                         help='model to test',
-                        default=None, type=str) # TODO: point to the path of saved network
+                        default='/usr0/home/htpham/Downloads/824/a2/assignment2/output/default/voc_2007_trainval/hai_snapshot_iter_25000.caffemodel',
+                        type=str) # TODO: point to the path of saved network
     parser.add_argument('--cfg', dest='cfg_file',
                         help='optional config file', default=None, type=str)
     parser.add_argument('--wait', dest='wait',
