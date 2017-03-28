@@ -1,11 +1,11 @@
 name: "VGG_CNN_M_1024"
 input: "data"
-input_shape {
-  dim: 1
-  dim: 3
-  dim: 224
-  dim: 224
-}
+#input_shape {
+#  dim: 1
+#  dim: 3
+#  dim: 224
+#  dim: 224
+#}
 input: "rois"
 input_shape {
   dim: 1 # to be changed on-the-fly to num ROIs
