@@ -327,7 +327,7 @@ layer {
   bottom: "cls_score_8c"
   top: "classification_prob"
   softmax_param {
-    axis: 0 # try to switch
+    axis: 0
   }
  }
 
@@ -337,7 +337,7 @@ layer {
   bottom: "cls_score_8d"
   top: "detection_prob"
       softmax_param {
-    axis: 1 #TODO: how to validate?
+    axis: 1
   }
 }
 

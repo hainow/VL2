@@ -24,7 +24,7 @@ def parse_args():
     """
     parser = argparse.ArgumentParser(description='Test a Fast R-CNN network')
     parser.add_argument('--gpu', dest='gpu_id', help='GPU id to use',
-                        default=0, type=int)
+                        default=3, type=int)
     parser.add_argument('--def', dest='prototxt',
                         help='prototxt file defining the network',
                         default='models/pascal_voc/VGG_CNN_M_1024/wsddn/test.prototxt', type=str)
