@@ -381,8 +381,9 @@ class MyLossLayer(caffe.Layer):
 class SecretAssignmentLayer(caffe.Layer):
 	
     def setup(self, bottom, top):
-        assert(len(bottom)==1)
-        assert(len(top)==1)
+        # assert(len(bottom)==1)
+        # assert(len(top)==1)
+        pass
     
     def forward(self, bottom, top):
         top[0].data[0,:] = np.swapaxes(bottom[0].data[:],0,1)
