@@ -353,10 +353,9 @@ class BlobFetcher(Process):
 
 
 class MyLossLayer(caffe.Layer): 
-   def setup(self, bottom, top): 
-       # self.top = top
-       # self.bottom = bottom
-        pass
+   def setup(self, bottom, top):
+       assert (len(bottom) == 2)
+       assert (len(top) == 1)
 
    def forward(self, bottom, top):
        # bottom[0] = predicts, bottom[1] = binary labels 
