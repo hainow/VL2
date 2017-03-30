@@ -354,8 +354,9 @@ class BlobFetcher(Process):
 
 class MyLossLayer(caffe.Layer): 
    def setup(self, bottom, top): 
-       self.top = top
-       self.bottom = bottom
+       # self.top = top
+       # self.bottom = bottom
+        pass
 
    def forward(self, bottom, top):
        # bottom[0] = predicts, bottom[1] = binary labels 
@@ -381,10 +382,9 @@ class MyLossLayer(caffe.Layer):
 class SecretAssignmentLayer(caffe.Layer):
 	
     def setup(self, bottom, top):
-        # assert(len(bottom)==1)
-        # assert(len(top)==1)
-        pass
-    
+        assert(len(bottom)==1)
+        assert(len(top)==1)
+
     def forward(self, bottom, top):
         top[0].data[0,:] = np.swapaxes(bottom[0].data[:],0,1)
         
